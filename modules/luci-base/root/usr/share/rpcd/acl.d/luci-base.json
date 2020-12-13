@@ -1,0 +1,44 @@
+{
+	"uci-access": {
+		"description": "Grant uci write access to all configurations",
+		"read": {
+			"uci": [ "*" ]
+		},
+		"write": {
+			"uci": [ "*" ]
+		}
+	},
+	"luci-access": {
+		"description": "Grant access to basic LuCI procedures",
+		"read": {
+			"ubus": {
+				"iwinfo": [ "info" ],
+				"luci": [ "boardjson", "duid_hints", "host_hints", "ifaddrs", "initList", "getLocaltime", "leases", "leds", "netdevs", "usb" ],
+				"network.device": [ "status" ],
+				"network.interface": [ "dump" ],
+				"network.wireless": [ "status" ],
+				"uci": [ "changes", "get" ]
+			},
+			"uci": [ "*" ]
+		},
+		"write": {
+			"ubus": {
+				"luci": [ "initCall", "setLocaltime", "timezone" ],
+				"uci": [ "add", "apply", "confirm", "delete", "order", "set" ]
+			},
+			"uci": [ "*" ]
+		}
+	},
+	"luci-app-firewall": {
+		"description": "Grant access to firewall procedures",
+		"read": {
+			"ubus": {
+				"luci": [ "conntrack_helpers", "offload_support" ]
+			},
+			"uci": [ "firewall" ]
+		},
+		"write": {
+			"uci": [ "firewall" ]
+		}
+	}
+}

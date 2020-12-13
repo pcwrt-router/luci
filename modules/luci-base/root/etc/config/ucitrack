@@ -1,0 +1,82 @@
+config network
+	option init 'network'
+	list affects 'dhcp'
+	list affects 'upnpd'
+
+config wireless
+	list affects 'network'
+
+config firewall
+	option init 'firewall'
+	list affects 'qos'
+	list affects 'upnpd'
+	list affects 'mp'
+	list affects 'updater'
+
+config olsr
+	option init 'olsrd'
+
+config dhcp
+	option init 'dnsmasq'
+	list affects 'odhcpd'
+
+config odhcpd
+	option init 'odhcpd'
+
+config dropbear
+	option init 'dropbear'
+
+config httpd
+	option init 'httpd'
+
+config fstab
+	option init 'fstab'
+
+config qos
+	option init 'qos'
+
+config system
+	option init 'led'
+	list affects 'luci_statistics'
+
+config updater
+	option init 'updater'
+
+config openvpn
+	option init 'openvpn'
+
+config openvpnc
+	option init 'openvpnc'
+
+config upnpd
+	option init 'miniupnpd'
+
+config ntpclient
+	option init 'ntpclient'
+
+config samba
+	option init 'samba'
+
+config tinyproxy
+	option init 'tinyproxy'
+
+config 6relayd
+	option init '6relayd'
+
+config mp
+	option init 'mp'
+	list affects 'upnpd'
+
+config ddns
+	option init 'ddns'
+	list affects 'cron'
+
+config cron
+	option init 'cron'
+
+config ipsec
+	option init 'ipsec'
+	list affects 'firewall'
+
+config wg
+	option init 'wg'
