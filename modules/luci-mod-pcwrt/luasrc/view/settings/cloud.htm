@@ -1,0 +1,42 @@
+<%+'_header'%>
+<%+'_breadcrumbs'%>
+	
+<div class="container settings-header">
+<h3><%:Cloud Settings%></h3>
+</div>
+
+<div class="container narrow-form">
+<form name="remote-manage" action="<%=build_url(section..'/cloud/update')%>" method="POST">
+<fieldset>
+<div id="remote-manage">
+<div class="form-group">
+	<label class="control-label required" for="pcwrt-uid"><%:pcwrt.com Username%>
+	</label> 
+	<a class="pull-right" target="_blank" href="https://www.pcwrt.com/register/">Register</a>	
+	<input class="form-control" id="pcwrt-uid" name="pcwrt_uid" autocomplete="off">
+</div>
+<div class="form-group">
+	<label class="control-label required" for="pcwrt-key"><%:Remote Management Key%></label>
+	<input class="form-control reveal" id="pcwrt-key" name="pcwrt_key" autocomplete="off">
+</div>
+<div class="form-group">
+	<label>
+		<input type="checkbox" name="remotemanage" value="1"> <%:Enable Remote Management%>
+	</label>
+</div>
+<div class="form-group">
+	<label class="control-label required" for="display-name"><%:Router Display Name%></label> 
+	<input type="text" class="form-control" id="display-name" name="name">
+</div>
+<div class="form-group">
+	<label class="control-label" for="bind-port"><%:Bind Port%></label>
+	<input type="text" class="form-control" id="bind-port" name="bind_port" value="0" style="width:auto">
+</div>
+</div>
+</fieldset>
+<div class="form-group text-center">
+	<button type="submit" class="btn btn-success"><%:Save%></button>
+</div>
+</form>
+</div>
+<%+'_footer'%>

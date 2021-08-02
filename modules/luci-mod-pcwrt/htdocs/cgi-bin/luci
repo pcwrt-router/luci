@@ -1,0 +1,16 @@
+#!/usr/bin/lua
+require "luci.cacheloader"
+require "luci.config"
+
+local fs = require "nixio.fs"
+local tpl = require "luci.template"
+local media = luci.config.main.mediaurlbase
+
+if not pcall(tpl.Template, "themes/%s/header" % fs.basename(media)) then
+    require "luci.sgi.pcwrtcgi"
+    luci.sgi.pcwrtcgi.run()
+else
+    require "luci.sgi.cgi"
+    luci.dispatcher.indexcache = "/tmp/luci-indexcache"
+    luci.sgi.cgi.run()
+end

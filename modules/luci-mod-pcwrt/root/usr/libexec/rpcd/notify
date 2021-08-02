@@ -1,0 +1,43 @@
+#!/bin/sh
+LOG_FILE=/etc/config/notifications.log
+
+case "$1" in
+list)
+    echo '{ "set": {"email": "str", "msg": "str"}, "get": {}, "clear":{} }'
+    ;;
+
+call)
+    case "$2" in
+    set)
+	# read the arguments
+	read input;
+
+	# optionally log the call
+	# logger -t "notify" "call" "$2" "$input"
+
+	echo "{\"ts\":\"`date '+%m/%d/%Y %r'`\",\"log\": $input}" >> $LOG_FILE
+
+	# return json object or an array
+	echo '{ "status": "done" }'
+	;;
+
+    get)
+	result='{"logs":['
+	PP=''
+	while read line; do
+	    [ -n "$line" ] && {
+		result=$result$PP$line
+		PP=','
+	    }
+	done <$LOG_FILE
+	result=${result}]}
+	echo $result
+	;;
+
+    clear)
+	echo ''>$LOG_FILE
+	echo '{ "status": "done" }'
+	;;
+    esac
+    ;;
+esac
